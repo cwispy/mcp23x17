@@ -23,7 +23,7 @@ sudo apt-get intstall i2c-tools -y
 You also need to allow the web server permissions to run the i2cdetect, i2cset and i2cget tools.
 Add the webserver to the i2c group. On raspbian this can be done with the commmand
 
-sudo adduser www-data irc
+sudo adduser www-data i2c
 
 Example usage:
 
