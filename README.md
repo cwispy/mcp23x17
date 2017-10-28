@@ -30,20 +30,24 @@ Example usage:
 include the class file in your project. Edit the location as necessary
 require_once('classes/mcp23x17.php');
 
-instantiate the class
+instantiate the class 
+
 $mcp = new mcp23x17();
 
 finds devices connected to the Raspberry Pi and returns them as an array.
 an example of the data returned: { "0x20", "0x24" }
+
 $res = $mcp->geti2cdevices( $m->read_detect() );
 
 set the address of the i2c device
+
 $mcp->setI2CAddress("0x21");
 
 set the direction of the GPIO bank A ports to all Outputs
 binary would be 00000000
 the getIODIRA function is a constant defined in the class to make it
 easier to address the correct register
+
 $mcp->setIODirection( $t->getIODIRA(), '0x00' );
 
 set the direction of the GPIO bank B ports
@@ -51,18 +55,22 @@ in this example we set ports b0-b3 and b7 as inputs
 while ports b4-b6 are outputs
 binary representation of that would be 10001111
 converting to hex gives us 0x8F
+
 $mcp->setIODirection( $t->getIODIRB(), '0x8F' );
 
 
-// to get the readings from the GPIO ports
+to get the readings from the GPIO ports
+
 $mcp->getReadings( $t->getGPIOA() );
 
-// or to read for the Latches instead we would use
+or to read for the Latches instead we would use
+
 $mcp->getReadings( $t->getOLATA() );
 
-// to get the status of the individual port a0
-// we can use the getPorta0 function
-// this will return 
-// 0 for low or off
-// 1 for high or on
+to get the status of the individual port a0
+we can use the getPorta0 function
+this will return 
+0 for low or off
+1 for high or on
+
 print_r("A0 ".$mcp->getPorta0()."<br/>");
